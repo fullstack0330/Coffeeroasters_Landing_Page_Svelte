@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    min-width: 375px;
+  }
+
+  summary {
+    cursor: default;
+    list-style: none;
+  }
+
+  :is(h1, h2, h3, strong, summary, .btn) {
+    font-family: theme(fontFamily.serif);
+    font-weight: 900;
+  }
+
+  [aria-disabled='true'] {
+    pointer-events: none;
+  }
+
+  dialog::backdrop {
+    background-color: theme(colors.black / 50%);
+  }
+}
+
+@layer components {
+  .hero {
+    background-size: cover;
+    border-radius: 0.625rem;
+    color: theme(colors.default.100);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .hero :where(p) {
+    opacity: 0.8;
+  }
+
+  .btn {
+    background-color: theme(colors.primary.200);
+    border-radius: theme(borderRadius.md);
+    color: theme(colors.default.100);
+    display: inline-grid;
+    font-size: 1.125rem;
+    height: 3.5rem;
+    line-height: 1.5625rem;
+    place-items: center;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    width: 13.5625rem;
+  }
+
+  .btn:hover {
+    background-color: theme(colors.primary.100);
+  }
+
+  .btn:disabled {
+    background-color: #e2dedb;
+  }
+
+  .bg-before::before {
+    background-color: theme(colors.default.350);
+    border-radius: theme(borderRadius.xl);
+    content: '';
+    position: absolute;
+    z-index: -1;
+  }
+
+  @media screen(sm) {
+    .hero {
+      padding: 3.5rem;
+      text-align: left;
+    }
+  }
+
+  @media screen(lg) {
+    .hero {
+      padding: 5.25rem;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:data.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Product {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  image       Image  @relation(fields: [imageId], references: [id])
+  imageId     Int    @unique
+}
+
+model Feature {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  image       Image  @relation(fields: [imageId], references: [id])
+  imageId     Int    @unique
+}
+
+model Headquarter {
+  id      Int    @id @default(autoincrement())
+  country String
+  address String
+  city    String
+  state   String
+  phone   String
+  image   Image  @relation(fields: [imageId], references: [id])
+  imageId Int    @unique
+}
+
+model Image {
+  id          Int          @id @default(autoincrement())
+  source      String
+  width       Int
+  height      Int
+  product     Product?
+  feature     Feature?
+  headquarter Headquarter?
+}
+
+model Question {
+  id      String   @unique
+  label   String
+  options Option[]
+}
+
+model Option {
+  id          Int      @id @default(autoincrement())
+  value       String
+  description String
+  question    Question @relation(fields: [questionId], references: [id])
+  questionId  String
+}

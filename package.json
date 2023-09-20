@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "build": "npm run prisma:generate && vite build",
-    "prisma:generate" : "prisma generate",
+    "build": "vite build",
     "preview": "node scripts/preview",
     "lint": "eslint .",
     "format": "node scripts/format"
